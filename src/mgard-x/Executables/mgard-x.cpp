@@ -16,6 +16,7 @@
 #include "compress_x.hpp"
 #include "mgard-x/Utilities/ErrorCalculator.h"
 // #include "compress_cuda.hpp"
+#include "./yafan_timingGPU.h"
 
 #define OUTPUT_SAFTY_OVERHEAD 1e6
 
@@ -582,11 +583,18 @@ bool try_compression(int argc, char *argv[]) {
           lossless_level, domain_decomposition, hybrid_decomposition, dev_type,
           verbose, prefetch, max_memory_footprint);
     } else if (dtype == mgard_x::data_type::Float) {
+      TimingGPU timer_GPU;                    // yafan set timer
+      timer_GPU.StartCounter();               // yafan set timer
       launch_compress<float>(
           D, dtype, input_file.c_str(), output_file.c_str(), shape, non_uniform,
           non_uniform_coords_file.c_str(), tol, s, mode, reorder,
           lossless_level, domain_decomposition, hybrid_decomposition, dev_type,
           verbose, prefetch, max_memory_footprint);
+      float cmpTime = timer_GPU.GetCounter(); // yafan set timer
+      auto nbEle = 1;
+      for (const auto& element : shape)
+        nbEle *= element;
+      printf("\033[0;31m[iowa]\033[0m Compression e2e throughput: %f GB/s\n", (nbEle*sizeof(float)/1024.0/1024.0)/cmpTime);
     }
   }
   mgard_x::release_cache(mgard_x::Config());

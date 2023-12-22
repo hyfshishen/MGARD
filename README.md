@@ -1,5 +1,7 @@
 ## Yafan's Comments
-Forked from original repository [LINK](https://github.com/CODARcode/MGARD). Slightly modified the buliding scripts for conducting experiments in Argonne Swing cluster (NVIDIA A100 GPU).
+Forked from original repository [LINK](https://github.com/CODARcode/MGARD):
+1. Slightly modifying the buliding scripts for conducting experiments in Argonne Swing cluster (NVIDIA A100 GPU).
+2. Instrumenting e2e throughput measurement.
 
 - Building script.
     ```shell
@@ -8,7 +10,7 @@ Forked from original repository [LINK](https://github.com/CODARcode/MGARD). Slig
     The executable binary can be found in ```/MGARD/build-cuda-ampere/mgard/bin/```.
 - Executing script.
     ```shell
-    $ ./mgard-x -z -i ./temperature.f32 -c ./cmp_temperature -t s -n 3 512 512 512 -m rel -e 1e-3 -d cuda -s 0 -l 0 -v 0
+    $ ./mgard-x -z -i ./pressure_3000 -c ./cmp_p3000 -t s -n 3 1008 1008 352 -m rel -e 1e-3 -d cuda -s 0 -l 0 -v 3
     ```
 
 <img src="./doc/images/MGARD-logo.png" width="200" /> 
