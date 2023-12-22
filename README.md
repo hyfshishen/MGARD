@@ -8,7 +8,7 @@ Forked from original repository [LINK](https://github.com/CODARcode/MGARD). Slig
     The executable binary can be found in ```/MGARD/build-cuda-ampere/mgard/bin/```.
 - Executing script.
     ```shell
-    ./mgard-x -z -i ./temperature.f32 -c ./cmp_temperature -t s -n 3 512 512 512 -m rel -e 1e-3 -d cuda -s 0 -l 0 -v 0
+    $ ./mgard-x -z -i ./temperature.f32 -c ./cmp_temperature -t s -n 3 512 512 512 -m rel -e 1e-3 -d cuda -s 0 -l 0 -v 0
     ```
 
 <img src="./doc/images/MGARD-logo.png" width="200" /> 
